@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria La Trattoria | La vraie pizza italienne</title>
+    <meta name="description" content="Pizzeria La Trattoria : pizzas italiennes au feu de bois, ingrédients frais et livraison rapide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary-color: #D9381E; /* Rouge tomate */
+            --secondary-color: #F2C94C; /* Jaune fromage */
+            --bg-light: #FFFDF5; /* Crème fondue */
+            --text-dark: #2B2B2B;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            /* CORRIGÉ : une seule url() après le dégradé */
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1513104890138-7c749659b591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')
+                center / cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--font-body);
+            transition: transform 0.3s, background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #b92b12;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- MENU SECTION --- */
+        .menu {
+            padding: 4rem 5%;
+            background-color: #fff8e6;
+        }
+
+        .pizza-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pizza-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pizza-img-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .pizza-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .pizza-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .pizza-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+        }
+
+        .pizza-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .pizza-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 1rem;
+            margin-top: auto;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
+            padding: 4rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            outline: 2px solid var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #2B2B2B;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-content .logo {
+            color: var(--secondary-color);
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.9rem; }
+            .nav-links { display: none; } /* Pour simplifier, on cache le menu sur mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">La Trattoria</div>
+        <div class="nav-links">
+            <a href="#hero">Accueil</a>
+            <a href="#features">Pourquoi nous</a>
+            <a href="#menu">Menu</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="hero">
+        <h1>L'Art de la Pizza Italienne</h1>
+        <p>Découvrez notre nouvelle recette à la tomate San Marzano et à la mozzarella de Parme. 100% Bio, 100% Passion.</p>
+        <a href="#menu" class="btn">Commander maintenant</a>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features">
+        <h2 class="section-title">Pourquoi choisir La Trattoria ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">🍅</div>
+                <h3>Ingrédients Frais</h3>
+                <p>Nous utilisons des légumes et fromages sélectionnés chaque matin directement chez les producteurs locaux.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🚀</div>
+                <h3>Livraison Rapide</h3>
+                <p>Dans les 45 minutes, nous vous livrons notre pizza encore tiède et parfumée.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔥</div>
+                <h3>Four à Bois</h3>
+                <p>La cuisson à 400°C dans notre four traditionnel donne une croûte croustillante et un cœur moelleux.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="menu">
+        <h2 class="section-title">Notre Carte Star</h2>
+        <div class="pizza-grid">
+            <!-- Pizza 1 -->
+            <div class="pizza-card">
+                <div class="pizza-img-container">
+                    <img src="https://images.unsplash.com/photo-1574071819763-c5af65f7e9fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pizza Margarita">
+                </div>
+                <div class="pizza-info">
+                    <h3 class="pizza-title">Margarita Classique</h3>
+                    <p class="pizza-desc">Pâte de base, tomate San Marzano, Mozza, olives noires.</p>
+                    <span class="price">12€</span>
+                    <button class="btn" onclick="commander('Margarita')">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Pizza 2 -->
+            <div class="pizza-card">
+                <div class="pizza-img-container">
+                    <img src="https://images.unsplash.com/photo-1604382350906-eaffd5c8b27d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pizza 4 Fromages">
+                </div>
+                <div class="pizza-info">
+                    <h3 class="pizza-title">La Richissima</h3>
+                    <p class="pizza-desc">Boursin, Cheddar AOP, Gorgonzola, Parmesan.</p>
+                    <span class="price">16€</span>
+                    <button class="btn" onclick="commander('Richissima')">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Pizza 3 -->
+            <div class="pizza-card">
+                <div class="pizza-img-container">
+                    <img src="https://images.unsplash.com/photo-1565299624946-bd837d45e08a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pizza au lamb et à la truffe">
+                </div>
+                <div class="pizza-info">
+                    <h3 class="pizza-title">Le Gourmet</h3>
+                    <p class="pizza-desc">Lamb (filet), Champignons, truffe noire, miel.</p>
+                    <span class="price">19€</span>
+                    <button class="btn" onclick="commander('Gourmet')">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contactez-nous</h2>
+        <form id="contact-form">
+            <input type="text" name="nom" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <textarea name="message" rows="6" placeholder="Votre message ou commande de groupe..." required></textarea>
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">La Trattoria</div>
+            <p>Ouvert du mardi au dimanche, de 11h30 à 14h30 et de 18h30 à 22h30.</p>
+            <p>&copy; 2026 La Trattoria. Fait avec passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        function commander(pizza) {
+            alert("La pizza " + pizza + " a bien été ajoutée à votre panier !");
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert("Merci pour votre message ! Nous vous répondrons rapidement.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
